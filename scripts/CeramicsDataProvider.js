@@ -44,3 +44,8 @@ const ceramicsCollection = [
         sold: false
     }
 ]
+export const useCeramics = () => {
+    return ceramicsCollection.slice()
+}
+// This is a function in the data provider whose responsibility is to allow other modules to access the state.
+
