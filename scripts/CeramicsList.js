@@ -7,7 +7,7 @@ export const CeramicsList = () => {
     const contentElement = document.querySelector("#container")
     const ceramics = useCeramics()
     let potteryHTMLRepresentations = ""
-    for (const pot of ceramics) {
+    for (const pot of Ceramics) {
 
     }
 
