@@ -1,21 +1,27 @@
 import { useCeramics } from './CeramicsDataProvider.js'
-import { Ceramics } from './Ceramics.js'
+import { CeramicsComponent } from './Ceramics.js'
 
 export const CeramicsList = () => {
 
     // Get a reference to the `<article class="content">` element
     const contentElement = document.querySelector("#container")
-    const ceramics = useCeramics()
+    const pots = useCeramics()
     let potteryHTMLRepresentations = ""
-    for (const pot of ceramics) {
-        console.log(pot)
+    for (const pot of pots) {
+        const potteryHTML = CeramicsComponent(pot)
+        potteryHTMLRepresentations += potteryHTMLRepresentations
 
     }
 
     // Add to the existing HTML in the content element
     contentElement.innerHTML += `
         <article class="ceramicsList">
-            ${potteryHTMLRepresentations}
+             ${potteryHTMLRepresentations}
+             ${pots
+            .map(currentpottery => {
+                return CeramicsComponent(currentpottery);
+            })
+            .join("")}
         </article>
     `
 }
