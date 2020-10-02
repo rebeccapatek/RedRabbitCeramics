@@ -4,7 +4,7 @@ import { CeramicsComponent } from './Ceramics.js'
 export const CeramicsList = () => {
 
     // Get a reference to the `<article class="content">` element
-    const contentElement = document.querySelector("#container")
+    const contentElement = document.querySelector("store")
     const pots = useCeramics()
     let potteryHTMLRepresentations = ""
     for (const pot of pots) {
