@@ -4,27 +4,6 @@ const eventHub = document.querySelector(".container")
 let type = null;
 
 
-// eventHub.addEventListener("ceramicTypeChosen", event => {
-//     // Use the property you added to the event detail.
-//     if (event.detail.ceramicTypeThatWasChosen !== "0") {
-//         type = event.detail.ceramicTypeThatWasChosen
-//         /*
-//             Filter the criminals application state down to the people that committed the crime
-//         */
-//         const matchingCeramic = appStateCeramics.filter()
-
-//         /*
-//             Then invoke render() and pass the filtered collection as
-//             an argument
-//         */
-//     }
-// })
-
-// const render = criminalCollection => {
-//     contentTarget.innerHTML = you_fill_this_in
-// }
-
-
 export const CeramicsList = () => {
 
     // Get a reference to the `<article class="content">` element
@@ -49,3 +28,44 @@ export const CeramicsList = () => {
         </article>
     `
 }
+
+
+eventHub.addEventListener("ceramicTypeChosen", event => {
+    // Use the property you added to the event detail.
+    if (event.detail.ceramicTypeThatWasChosen !== "0") {
+        type = event.detail.ceramicTypeThatWasChosen
+        /*
+            Filter the criminals application state down to the people that committed the crime
+        */
+        const appStateCeramics = useCeramics()
+        const matchingCeramic = appStateCeramics.filter(pot => pot.type === type)
+        console.log("Event Hub was heard");
+        let matchingPotteryHTMLRepresentations = ""
+        for (const pot of matchingCeramic) {
+            const filterPotteryHTML = CeramicsComponent(pot)
+            matchingPotteryHTMLRepresentations += matchingPotteryHTMLRepresentations
+
+        }
+        contentElement.innerHTML += `
+           <article class="ceramicsList">
+                ${matchingPotteryHTMLRepresentations}
+                ${matchingCeramic
+                .map(currentpottery => {
+                    return CeramicsComponent(currentpottery);
+                })
+                .join("")}
+           </article>
+       `
+    }
+
+    /*
+        Then invoke render() and pass the filtered collection as
+        an argument
+    */
+}
+)
+
+// const render = ceramicsCollection => {
+//     contentTarget.innerHTML = you_fill_this_in
+// }
+

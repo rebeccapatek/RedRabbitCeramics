@@ -1,9 +1,23 @@
 const eventHub = document.querySelector(".container")
 
+export const CeramicsSorter = () => {
+    const contentElement = document.querySelector(".sorter")
+    contentElement.innerHTML += `
+    <select id="ceramicTypeSelect">
+        <option value="0">Sort By</option>
+        <option value="mug">Mugs</option>
+        <option value="planter">Planters</option>
+        <option value="Coffee-maker">Coffee-Making Accesories</option>
+    </select>
+    `
+
+}
+
 eventHub.addEventListener("change", event => {
 
     // Only do this if the `crimeSelect` element was changed
     if (event.target.id === "ceramicTypeSelect") {
+        console.log("message was sent")
         // Create custom event. Provide an appropriate name.
         const customEvent = new CustomEvent("ceramicTypeChosen", {
             detail: {
@@ -16,30 +30,3 @@ eventHub.addEventListener("change", event => {
     }
 })
 
-export const mugsCeramics = cermamicCollectionArray => {
-    let mugs = [];
-    for (const ceramic of cermamicCollectionArray) {
-        if (ceramic.type === "mug") {
-            mugs.push(ceramic);
-        }
-    }
-    return mugs;
-};
-export const plantersCeramics = cermamicCollectionArray => {
-    let planters = [];
-    for (const ceramic of cermamicCollectionArray) {
-        if (ceramic.type === "planter") {
-            planters.push(ceramic);
-        }
-    }
-    return planters;
-};
-export const coffeeCeramics = cermamicCollectionArray => {
-    let coffeemakers = [];
-    for (const ceramic of cermamicCollectionArray) {
-        if (ceramic.type === "Coffee-maker") {
-            coffeemakers.push(ceramic);
-        }
-    }
-    return coffeemakers;
-};
