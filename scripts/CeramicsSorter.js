@@ -13,20 +13,24 @@ export const CeramicsSorter = () => {
 
 }
 
-eventHub.addEventListener("change", event => {
+eventHub.addEventListener('ceramicTypeChosen', onchange => {
 
-    // Only do this if the `crimeSelect` element was changed
-    if (event.target.id === "ceramicTypeSelect") {
-        console.log("message was sent")
+
+
+    if (onchange.target.id === 'ceramicTypeSelect') {
+
+        console.log("message was sent to Event Hub");
         // Create custom event. Provide an appropriate name.
-        const customEvent = new CustomEvent("ceramicTypeChosen", {
+        const customEvent = new CustomEvent('ceramicTypeChosen', {
             detail: {
-                ceramicTypeThatWasChosen: event.target.value
+                ceramicTypeThatWasChosen: onchange.target.value
             }
-        })
+        }
+        )
 
         // Dispatch to event hub
         eventHub.dispatchEvent(customEvent)
+
     }
 })
 

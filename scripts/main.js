@@ -5,7 +5,7 @@ import { CeramicsSorter } from './CeramicsSorter.js'
 const allTheCeramics = useCeramics()
 
 
-console.log("Welcome to the main module")
+
 CeramicsList();
 CeramicsSorter();
 
