@@ -1,4 +1,4 @@
-const eventHub = document.querySelector(".container")
+export const eventHub = document.querySelector(".container")
 
 export const CeramicsSorter = () => {
     const contentElement = document.querySelector(".sorter")
@@ -13,18 +13,19 @@ export const CeramicsSorter = () => {
 
 }
 
-eventHub.addEventListener('ceramicTypeChosen', onchange => {
+eventHub.addEventListener('ceramicTypeChosen', changeEvent => {
 
 
 
-    if (onchange.target.id === 'ceramicTypeSelect') {
+    if (changeEvent.target.id === 'ceramicTypeSelect') {
 
         console.log("message was sent to Event Hub");
         // Create custom event. Provide an appropriate name.
         const customEvent = new CustomEvent('ceramicTypeChosen', {
             detail: {
-                ceramicTypeThatWasChosen: onchange.target.value
-            }
+                ceramicTypeThatWasChosen: changeEvent.target.value
+            },
+
         }
         )
 
