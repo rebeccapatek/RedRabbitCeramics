@@ -5,6 +5,39 @@ let type = null;
 
 
 export const CeramicsList = () => {
+    eventHub.addEventListener("ceramicTypeChosen", changeEvent => {
+        // Use the property you added to the event detail.
+        if (changeEvent.detail.ceramicTypeThatWasChosen !== "0") {
+            type = changeEvent.detail.ceramicTypeThatWasChosen
+            /*
+                Filter the criminals application state down to the people that committed the crime
+            */
+            const appStateCeramics = useCeramics()
+            const matchingCeramic = appStateCeramics.filter(pot => pot.type === type)
+            console.log("Event Hub was heard");
+            let matchingPotteryHTMLRepresentations = ""
+            for (const pot of matchingCeramic) {
+                const filterPotteryHTML = CeramicsComponent(pot)
+                matchingPotteryHTMLRepresentations += matchingPotteryHTMLRepresentations
+
+            }
+            contentElement.innerHTML += `
+               <article class="ceramicsList">
+                    ${matchingPotteryHTMLRepresentations}
+                    ${matchingCeramic
+                    .map(currentpottery => {
+                        return CeramicsComponent(currentpottery);
+                    })
+                    .join("")}
+               </article>
+           `
+        }
+
+        /*
+            Then invoke render() and pass the filtered collection as
+            an argument
+        */
+    })
 
     // Get a reference to the `<article class="content">` element
     const contentElement = document.querySelector(".store")
@@ -30,40 +63,8 @@ export const CeramicsList = () => {
 }
 
 
-eventHub.addEventListener("ceramicTypeChosen", event => {
-    // Use the property you added to the event detail.
-    if (event.detail.ceramicTypeThatWasChosen !== "0") {
-        type = event.detail.ceramicTypeThatWasChosen
-        /*
-            Filter the criminals application state down to the people that committed the crime
-        */
-        const appStateCeramics = useCeramics()
-        const matchingCeramic = appStateCeramics.filter(pot => pot.type === type)
-        console.log("Event Hub was heard");
-        let matchingPotteryHTMLRepresentations = ""
-        for (const pot of matchingCeramic) {
-            const filterPotteryHTML = CeramicsComponent(pot)
-            matchingPotteryHTMLRepresentations += matchingPotteryHTMLRepresentations
 
-        }
-        contentElement.innerHTML += `
-           <article class="ceramicsList">
-                ${matchingPotteryHTMLRepresentations}
-                ${matchingCeramic
-                .map(currentpottery => {
-                    return CeramicsComponent(currentpottery);
-                })
-                .join("")}
-           </article>
-       `
-    }
 
-    /*
-        Then invoke render() and pass the filtered collection as
-        an argument
-    */
-}
-)
 
 // const render = ceramicsCollection => {
 //     contentTarget.innerHTML = you_fill_this_in
